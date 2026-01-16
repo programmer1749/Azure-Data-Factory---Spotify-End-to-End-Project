@@ -1,0 +1,9 @@
+{
+	"name": "adminvs",
+	"location": "southeastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "764d4bb3-fb66-43db-9095-3cdabe63eed7",
+		"tenantId": "4078a80c-9021-4925-b266-73fa548c3d10"
+	}
+}
