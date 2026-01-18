@@ -1,5 +1,5 @@
 {
-	"name": "incremental-ingestion_INCREMENTAL_LOAD",
+	"name": "incremental-ingestion_loop_multiple_data",
 	"properties": {
 		"activities": [
 			{
@@ -362,9 +362,7 @@
 						"activity": "ForEach1",
 						"dependencyConditions": [
 							"Failed",
-							"Skipped",
-							"Succeeded",
-							"Completed"
+							"Succeeded"
 						]
 					}
 				],
@@ -380,7 +378,7 @@
 					"method": "POST",
 					"url": "https://prod-26.northcentralus.logic.azure.com:443/workflows/18f91642856c47ef8af2d778d480ad8e/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=DWDCCC9RcZff0anD_kvVpeSl0QtURih0owCFAJIx_18",
 					"body": {
-						"value": "{\n    \"pipeline_name\":@{pipeline().Pipeline}\",\n    \"pipeline_runId\": \"@{pipeline().RunId}\"\n}\n",
+						"value": "{\n    \"pipeline_name\": \"@{pipeline().Pipeline}\",\n    \"pipeline_runId\": \"@{pipeline().RunId}\"\n}\n",
 						"type": "Expression"
 					}
 				}
