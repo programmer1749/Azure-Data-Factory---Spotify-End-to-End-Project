@@ -105,15 +105,12 @@
 						"referenceName": "Json_dynamic",
 						"type": "DatasetReference",
 						"parameters": {
-							"conatiner": {
-								"value": "bronze",
-								"type": "Expression"
-							},
+							"conatiner": "bronze",
 							"folder": "cdc",
 							"file": "cdc.json"
 						}
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			},
 			{
@@ -230,12 +227,12 @@
 									}
 								},
 								"sink": {
-									"type": "JsonSink",
+									"type": "ParquetSink",
 									"storeSettings": {
 										"type": "AzureBlobFSWriteSettings"
 									},
 									"formatSettings": {
-										"type": "JsonWriteSettings"
+										"type": "ParquetWriteSettings"
 									}
 								},
 								"enableStaging": false
@@ -252,6 +249,12 @@
 										},
 										"file": "empty.json"
 									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Parquet_dynamic",
+									"type": "DatasetReference"
 								}
 							]
 						},
