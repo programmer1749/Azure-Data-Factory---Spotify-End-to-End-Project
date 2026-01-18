@@ -102,18 +102,15 @@
 						}
 					},
 					"dataset": {
-						"referenceName": "Json1",
+						"referenceName": "Json_dynamic",
 						"type": "DatasetReference",
 						"parameters": {
-							"container": "bronze",
-							"folder": {
-								"value": "@{pipeline().parameters.table}_cdc",
-								"type": "Expression"
-							},
+							"conatiner": "bronze",
+							"folder": "cdc",
 							"file": "cdc.json"
 						}
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			},
 			{
@@ -230,12 +227,12 @@
 									}
 								},
 								"sink": {
-									"type": "JsonSink",
+									"type": "ParquetSink",
 									"storeSettings": {
 										"type": "AzureBlobFSWriteSettings"
 									},
 									"formatSettings": {
-										"type": "JsonWriteSettings"
+										"type": "ParquetWriteSettings"
 									}
 								},
 								"enableStaging": false
@@ -256,13 +253,8 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "Json1",
-									"type": "DatasetReference",
-									"parameters": {
-										"container": "bronze",
-										"folder": "cdc",
-										"file": "cdc.json"
-									}
+									"referenceName": "Parquet_dynamic",
+									"type": "DatasetReference"
 								}
 							]
 						},
