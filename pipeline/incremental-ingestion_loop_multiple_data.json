@@ -116,18 +116,6 @@
 										"type": "JsonReadSettings"
 									}
 								},
-								"dataset": {
-									"referenceName": "Json1",
-									"type": "DatasetReference",
-									"parameters": {
-										"container": "bronze",
-										"folder": {
-											"value": "@concat(item().table, '_cdc')\n",
-											"type": "Expression"
-										},
-										"file": "cdc.json"
-									}
-								},
 								"firstRowOnly": true
 							}
 						},
@@ -244,15 +232,6 @@
 													"type": "JsonReadSettings"
 												}
 											},
-											"sink": {
-												"type": "JsonSink",
-												"storeSettings": {
-													"type": "AzureBlobFSWriteSettings"
-												},
-												"formatSettings": {
-													"type": "JsonWriteSettings"
-												}
-											},
 											"enableStaging": false
 										},
 										"inputs": [
@@ -266,17 +245,6 @@
 														"type": "Expression"
 													},
 													"file": "empty.json"
-												}
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "Json1",
-												"type": "DatasetReference",
-												"parameters": {
-													"container": "bronze",
-													"folder": "cdc",
-													"file": "cdc.json"
 												}
 											}
 										]
