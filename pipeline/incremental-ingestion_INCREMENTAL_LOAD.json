@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('lkp_read_input_loop').output.value\n",
+						"value": "@pipeline().parameters.loop_input",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -122,7 +122,7 @@
 									"parameters": {
 										"container": "bronze",
 										"folder": {
-											"value": "folder = @{item().table}_cdc\n",
+											"value": "@concat(item().table, '_cdc')\n",
 											"type": "Expression"
 										},
 										"file": "cdc.json"
@@ -316,6 +316,8 @@
 						{
 							"name": "lkp_read_input_loop",
 							"type": "Lookup",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
@@ -350,6 +352,37 @@
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "Alerts",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Failed",
+							"Skipped",
+							"Succeeded",
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-26.northcentralus.logic.azure.com:443/workflows/18f91642856c47ef8af2d778d480ad8e/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=DWDCCC9RcZff0anD_kvVpeSl0QtURih0owCFAJIx_18",
+					"body": {
+						"value": "{\n    \"pipeline_name\":@{pipeline().Pipeline}\",\n    \"pipeline_runId\": \"@{pipeline().RunId}\"\n}\n",
+						"type": "Expression"
+					}
 				}
 			}
 		],
