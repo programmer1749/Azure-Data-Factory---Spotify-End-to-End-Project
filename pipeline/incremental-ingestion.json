@@ -101,6 +101,18 @@
 							"type": "JsonReadSettings"
 						}
 					},
+					"dataset": {
+						"referenceName": "Json_dynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"conatiner": {
+								"value": "bronze",
+								"type": "Expression"
+							},
+							"folder": "cdc",
+							"file": "cdc.json"
+						}
+					},
 					"firstRowOnly": false
 				}
 			},
