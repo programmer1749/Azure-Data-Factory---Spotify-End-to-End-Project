@@ -68,7 +68,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"conatiner": "bronze",
-							"folder": "DimUsers",
+							"folder": "DimUser",
 							"file": {
 								"value": "@concat(pipeline().parameters.table,'_',variables('current'))",
 								"type": "Expression"
