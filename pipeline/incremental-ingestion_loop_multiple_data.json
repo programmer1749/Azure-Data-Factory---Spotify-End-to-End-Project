@@ -116,6 +116,15 @@
 										"type": "JsonReadSettings"
 									}
 								},
+								"dataset": {
+									"referenceName": "Json_dynamic",
+									"type": "DatasetReference",
+									"parameters": {
+										"conatiner": "bronze",
+										"folder": "cdc",
+										"file": "cdc.json"
+									}
+								},
 								"firstRowOnly": true
 							}
 						},
@@ -232,6 +241,15 @@
 													"type": "JsonReadSettings"
 												}
 											},
+											"sink": {
+												"type": "JsonSink",
+												"storeSettings": {
+													"type": "AzureBlobFSWriteSettings"
+												},
+												"formatSettings": {
+													"type": "JsonWriteSettings"
+												}
+											},
 											"enableStaging": false
 										},
 										"inputs": [
@@ -245,6 +263,17 @@
 														"type": "Expression"
 													},
 													"file": "empty.json"
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "Json_dynamic",
+												"type": "DatasetReference",
+												"parameters": {
+													"conatiner": "bronze",
+													"folder": "cdc",
+													"file": "cdc.json"
 												}
 											}
 										]
